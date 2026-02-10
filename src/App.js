@@ -60,7 +60,7 @@ function App() {
               alt={`Flag of ${country.common}`}
               className="country-flag"
             />
-            <h3 className="country-name">{country.common}</h3>
+            <div className="country-name">{country.common}</div>
           </div>
         ))}
       </div>

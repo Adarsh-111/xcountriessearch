@@ -16,9 +16,10 @@ function App() {
     if (searchTerm.trim() === '') {
       setFilteredCountries(countries);
     } else {
-      const filtered = countries.filter(country =>
-        country.name.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+      const filtered = countries.filter(country => {
+        const countryName = country.common || '';
+        return countryName.toLowerCase().includes(searchTerm.toLowerCase());
+      });
       setFilteredCountries(filtered);
     }
   }, [searchTerm, countries]);
@@ -52,14 +53,14 @@ function App() {
         />
       </div>
       <div className="countries-container">
-        {filteredCountries.map((country) => (
-          <div key={country.abbr} className="countryCard">
+        {filteredCountries.map((country, index) => (
+          <div key={index} className="countryCard">
             <img
-              src={country.flag}
-              alt={`Flag of ${country.name}`}
+              src={country.png}
+              alt={`Flag of ${country.common}`}
               className="country-flag"
             />
-            <h3 className="country-name">{country.name}</h3>
+            <h3 className="country-name">{country.common}</h3>
           </div>
         ))}
       </div>
